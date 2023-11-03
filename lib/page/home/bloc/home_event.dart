@@ -10,6 +10,10 @@ class HomePageDistrictItemEvent extends HomeEvent{
   final List<District> districtItem;
   const HomePageDistrictItemEvent(this.districtItem);
 }
+class HomePageProvinceItemEvent extends HomeEvent{
+  final List<Province> provinceItem;
+  const HomePageProvinceItemEvent(this.provinceItem);
+}
 class SearchDistrictItemEvent extends HomeEvent{
   final List<District> searchDistrictItem;
   const SearchDistrictItemEvent(this.searchDistrictItem);
@@ -26,4 +30,8 @@ class SearchProvinceEvent extends HomeEvent {
 class SearchDistrictEvent extends HomeEvent {
   final String nameDistrict;
   const SearchDistrictEvent(this.nameDistrict);
+}
+class IsCheckedSearchEvent extends HomeEvent {
+  final bool isChecked;
+  const IsCheckedSearchEvent(this.isChecked);
 }

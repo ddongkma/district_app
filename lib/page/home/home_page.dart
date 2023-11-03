@@ -26,7 +26,6 @@ class _HomePageState extends State<HomePage> {
   late District districts;
   late Province provinces;
   late HomeController _homeController;
-
   @override
   void initState() {
     super.initState();
@@ -37,7 +36,6 @@ class _HomePageState extends State<HomePage> {
     super.didChangeDependencies();
     _homeController = HomeController(context: context);
     _homeController.init();
-
   }
 
   @override
@@ -63,25 +61,37 @@ class _HomePageState extends State<HomePage> {
                         ),
                         Container(
                           child: searchView("province", (value) {
-                            context.read<HomeBloc>().add(SearchProvinceEvent(value));
+                            context
+                                .read<HomeBloc>()
+                                .add(SearchProvinceEvent(value));
                             _homeController.filterDistrict(state.nameProvince);
                           }),
                         ),
-                        GestureDetector(
-                          onTap: (){
-
-                          },
-                          child: Container(
-                            width: 40.w,
-                            height: 40.h,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(13.w),
-                                color: AppColors.primaryElement,
-                                border: Border.all(
-                                    color: AppColors.primaryElement)),
-                            child: Icon(Icons.search),
-                          ),
-                        )
+                        Checkbox(
+                            checkColor: Colors.white,
+                            value: state.isChecked,
+                            onChanged: (bool? value) {
+                              if (value!) {
+                                _homeController.getAllProvince();
+                              }
+                              context
+                                  .read<HomeBloc>()
+                                  .add(IsCheckedSearchEvent(value!));
+                            })
+                        // GestureDetector(
+                        //   onTap: (){
+                        //   },
+                        //   child: Container(
+                        //     width: 40.w,
+                        //     height: 40.h,
+                        //     decoration: BoxDecoration(
+                        //         borderRadius: BorderRadius.circular(13.w),
+                        //         color: AppColors.primaryElement,
+                        //         border: Border.all(
+                        //             color: AppColors.primaryElement)),
+                        //     child: const Icon(Icons.search),
+                        //   ),
+                        // )
                       ],
                     ),
                   ),
@@ -103,9 +113,7 @@ class _HomePageState extends State<HomePage> {
                           }),
                         ),
                         GestureDetector(
-                          onTap: (){
-
-                          },
+                          onTap: () {},
                           child: Container(
                             width: 40.w,
                             height: 40.h,
@@ -138,36 +146,56 @@ class _HomePageState extends State<HomePage> {
                   ),
                   SizedBox(height: 20.h),
                   homeOption(),
-
                   SizedBox(
                       height: 500.h,
                       child: ListView.builder(
-                          itemCount: state.searchDistrictItem.length,
+                          itemCount: state.isChecked
+                              ? state.districtItem.length
+                              : state.searchDistrictItem.length,
                           itemBuilder: (context, index) {
                             print(index);
-                           return  Container(
+                            return Container(
                               padding: const EdgeInsets.symmetric(vertical: 10),
-                              child: cartView(
-                                state.searchDistrictItem
-                                    .elementAt(index)
-                                    .districtName
-                                    .toString(),
-                                state.searchDistrictItem
-                                    .elementAt(index)
-                                    .districtCode
-                                    .toString(),
-                                state.searchDistrictItem
-                                    .elementAt(index)
-                                    .provinceCode
-                                    .toString(),
-                                (state.searchDistrictItem
-                                    .elementAt(index)
-                                    .flagActive ==
-                                    '1'
-                                    ? "Active"
-                                    : "InActive")
-                                    .toString(),
-                              ),
+                              child: state.isChecked
+                                  ? cartView(
+                                      state.provinceItem
+                                          .elementAt(index)
+                                          .provinceName
+                                          .toString(),
+                                      state.provinceItem
+                                          .elementAt(index)
+                                          .provinceCode
+                                          .toString(),
+                                      '',
+                                      (state.provinceItem
+                                                      .elementAt(index)
+                                                      .flagActive ==
+                                                  '1'
+                                              ? "Active"
+                                              : "InActive")
+                                          .toString(),
+                                    )
+                                  : cartView(
+                                      state.searchDistrictItem
+                                          .elementAt(index)
+                                          .districtName
+                                          .toString(),
+                                      state.searchDistrictItem
+                                          .elementAt(index)
+                                          .districtCode
+                                          .toString(),
+                                      state.searchDistrictItem
+                                          .elementAt(index)
+                                          .provinceCode
+                                          .toString(),
+                                      (state.searchDistrictItem
+                                                      .elementAt(index)
+                                                      .flagActive ==
+                                                  '1'
+                                              ? "Active"
+                                              : "InActive")
+                                          .toString(),
+                                    ),
                             );
                           }))
                 ])),

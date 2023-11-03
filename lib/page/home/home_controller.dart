@@ -40,4 +40,8 @@ class HomeController {
     }
     context.read<HomeBloc>().add(SearchDistrictItemEvent(result));
   }
+  Future<void> getAllProvince() async {
+    context.read<HomeBloc>().add(HomePageProvinceItemEvent(provinces));
+  }
+
 }

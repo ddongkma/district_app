@@ -10,14 +10,17 @@ import 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc() : super( HomeState()) {
-    on<HomePageDistrictItemEvent>(_omePageDistrictItemEvent);
+    on<HomePageDistrictItemEvent>(_homePageDistrictItemEvent);
+    on<HomePageProvinceItemEvent>(_homePageProvinceItemEvent);
     on<SearchProvinceEvent>(_searchProvinceEvent);
     on<SearchDistrictEvent>(_searchDistrictEvent);
     on<SearchDistrictItemEvent>(_searchDistrictItemEvent);
     on<SearchProvinceItemEvent>(_searchProvinceItemEvent);
+    on<IsCheckedSearchEvent>(_isCheckedSearchEvent);
+
   }
 
-  FutureOr<void> _omePageDistrictItemEvent(HomePageDistrictItemEvent event, Emitter<HomeState> emit) {
+  FutureOr<void> _homePageDistrictItemEvent(HomePageDistrictItemEvent event, Emitter<HomeState> emit) {
     emit(state.copyWith(districtItem: event.districtItem));
   }
 
@@ -39,5 +42,13 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   FutureOr<void> _searchProvinceItemEvent(SearchProvinceItemEvent event, Emitter<HomeState> emit) {
     emit(state.copyWith(searchProvinceItem: event.searchProvinceItem));
 
+  }
+
+  FutureOr<void> _isCheckedSearchEvent(IsCheckedSearchEvent event, Emitter<HomeState> emit) {
+    emit(state.copyWith(isChecked: event.isChecked));
+  }
+
+  FutureOr<void> _homePageProvinceItemEvent(HomePageProvinceItemEvent event, Emitter<HomeState> emit) {
+    emit(state.copyWith(provinceItem: event.provinceItem));
   }
 }
