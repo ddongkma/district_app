@@ -14,6 +14,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<SearchProvinceEvent>(_searchProvinceEvent);
     on<SearchDistrictEvent>(_searchDistrictEvent);
     on<SearchDistrictItemEvent>(_searchDistrictItemEvent);
+    on<SearchProvinceItemEvent>(_searchProvinceItemEvent);
   }
 
   FutureOr<void> _omePageDistrictItemEvent(HomePageDistrictItemEvent event, Emitter<HomeState> emit) {
@@ -21,7 +22,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
 
   FutureOr<void> _searchProvinceEvent(SearchProvinceEvent event, Emitter<HomeState> emit) {
-    print(event.nameProvince);
+    // print(event.nameProvince);
     emit(state.copyWith(nameProvince: event.nameProvince));
   }
 
@@ -30,6 +31,13 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
 
   FutureOr<void> _searchDistrictItemEvent(SearchDistrictItemEvent event, Emitter<HomeState> emit) {
+
     emit(state.copyWith(searchDistrictItem: event.searchDistrictItem));
+  }
+
+
+  FutureOr<void> _searchProvinceItemEvent(SearchProvinceItemEvent event, Emitter<HomeState> emit) {
+    emit(state.copyWith(searchProvinceItem: event.searchProvinceItem));
+
   }
 }

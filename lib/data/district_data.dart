@@ -2,7 +2,6 @@
 
 import 'dart:convert';
 
-import 'package:district_app/models/district.dart';
 
 import '../common/entities/district.dart';
 

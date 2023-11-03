@@ -5,7 +5,6 @@ import 'dart:convert';
 
 import 'package:district_app/common/entities/province.dart';
 
-import '../../models/province.dart';
 
 String  PROVINCE_DATA = '''[
   {

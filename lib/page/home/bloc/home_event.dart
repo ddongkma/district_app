@@ -1,5 +1,6 @@
 
 import 'package:district_app/common/entities/district.dart';
+import 'package:district_app/common/entities/province.dart';
 
 abstract class HomeEvent {
   const HomeEvent();
@@ -12,6 +13,10 @@ class HomePageDistrictItemEvent extends HomeEvent{
 class SearchDistrictItemEvent extends HomeEvent{
   final List<District> searchDistrictItem;
   const SearchDistrictItemEvent(this.searchDistrictItem);
+}
+class SearchProvinceItemEvent extends HomeEvent{
+  final List<Province> searchProvinceItem;
+  const SearchProvinceItemEvent(this.searchProvinceItem);
 }
 
 class SearchProvinceEvent extends HomeEvent {

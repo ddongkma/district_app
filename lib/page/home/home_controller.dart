@@ -6,8 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../common/entities/district.dart';
+import '../../common/entities/province.dart';
 import '../../data/district_data.dart';
 import '../../data/district_data.dart';
+import '../../data/province_data.dart';
 import 'bloc/home_bloc.dart';
 
 class HomeController {
@@ -24,12 +26,18 @@ class HomeController {
       print("User has already logged out.");
     }
   }
-  void filterDistrict(String value){
+  Future<void> filterDistrict(String value) async {
+    List<District> result= [];
+   if(value != null){
+     List<Province> provincess = provinces.where((province) => province.provinceName!.contains(value)).toList();
+     var provi = provincess[0].provinceCode.toString();
+      if(provincess[0].provinceCode != null){
 
-    List<District> result = districts.where((district) => district.provinceCode == value).toList();
-
+        result = districts.where((district) => district.districtCode!.contains(provi)).toList();
+        print(result);
+       context.read<HomeBloc>().add(SearchDistrictItemEvent(result));
+     }
+    }
     context.read<HomeBloc>().add(SearchDistrictItemEvent(result));
-
   }
-
 }

@@ -13,7 +13,6 @@ import 'package:keyboard_dismisser/keyboard_dismisser.dart';
 
 import '../../common/entities/district.dart';
 import '../../common/values/colors.dart';
-import '../../data/district_data.dart';
 import 'bloc/home_event.dart';
 
 class HomePage extends StatefulWidget {
@@ -64,17 +63,12 @@ class _HomePageState extends State<HomePage> {
                         ),
                         Container(
                           child: searchView("province", (value) {
-                            context
-                                .read<HomeBloc>()
-                                .add(SearchProvinceEvent(value));
+                            context.read<HomeBloc>().add(SearchProvinceEvent(value));
+                            _homeController.filterDistrict(state.nameProvince);
                           }),
                         ),
                         GestureDetector(
                           onTap: (){
-                            if(state.nameProvince.contains('nội')){
-                               String value = "101";
-                               _homeController.filterDistrict(value);
-                            }
 
                           },
                           child: Container(
@@ -150,6 +144,7 @@ class _HomePageState extends State<HomePage> {
                       child: ListView.builder(
                           itemCount: state.searchDistrictItem.length,
                           itemBuilder: (context, index) {
+                            print(index);
                            return  Container(
                               padding: const EdgeInsets.symmetric(vertical: 10),
                               child: cartView(
