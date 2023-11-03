@@ -1,9 +1,13 @@
+import 'package:district_app/page/home/bloc/home_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../common/values/colors.dart';
+import '../bloc/home_bloc.dart';
+import '../bloc/home_event.dart';
 bool check= false;
-Widget cartView(String districtName,String districtCode,String provinceCode,String flagActive) {
+Widget cartView(BuildContext context,HomeState state,String districtName,String districtCode,String provinceCode,String flagActive) {
   return Container(
     // padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
     //  width: 150.w,
@@ -20,6 +24,11 @@ Widget cartView(String districtName,String districtCode,String provinceCode,Stri
         ]),
     child: Row(
       children: [
+        checkDelete(state.isChecked, (isChecked){
+          // context
+          //     .read<HomeBloc>()
+          //     .add(IsCheckedSearchEvent(isChecked!));
+        }),
         InkWell(
           onTap: (){},
           child: Row(
@@ -105,7 +114,9 @@ Widget cartView(String districtName,String districtCode,String provinceCode,Stri
 //     ),
 //   );
 // }
-
+Widget checkDelete(bool isCheck,void Function(bool? value)? func){
+  return Checkbox(value: isCheck, onChanged: func);
+}
 Widget _listContainer(
       String name,
     {

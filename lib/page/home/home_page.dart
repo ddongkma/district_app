@@ -161,16 +161,7 @@ class _HomePageState extends State<HomePage> {
                                   ? Container(
                                 child:Row(
                                   children: [
-                                    SizedBox(
-                                      child: Checkbox(
-
-                                          value: testCheck, onChanged: (bool? value){
-                                        setState(() {
-                                          testCheck= value!;
-                                        });
-                                      }),
-                                    ),
-                                    cartView(
+                                    cartView(context,state,
                                       state.provinceItem
                                           .elementAt(index)
                                           .provinceName
@@ -198,12 +189,7 @@ class _HomePageState extends State<HomePage> {
                                 child:Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Checkbox(value: testCheck, onChanged: (bool? value){
-                                       setState(() {
-                                         testCheck= value!;
-                                       });
-                                    }),
-                                    cartView(
+                                    cartView(context,state,
                                       state.searchDistrictItem
                                           .elementAt(index)
                                           .districtName
