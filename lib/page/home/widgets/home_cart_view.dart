@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../common/values/colors.dart';
-
+bool check= false;
 Widget cartView(String districtName,String districtCode,String provinceCode,String flagActive) {
   return Container(
     // padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
-     width: 150.w,
+    //  width: 150.w,
      height: 80.h,
     decoration: BoxDecoration(
         color: const Color.fromRGBO(255, 255, 225, 0.1),
@@ -20,14 +20,6 @@ Widget cartView(String districtName,String districtCode,String provinceCode,Stri
         ]),
     child: Row(
       children: [
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10.w),
-          ),
-          child: Checkbox(value: false, onChanged: ( value) {
-            // return !value;
-          },),
-        ),
         InkWell(
           onTap: (){},
           child: Row(
@@ -122,7 +114,7 @@ Widget _listContainer(
       FontWeight fontWeight = FontWeight.bold}) {
   return Container(
     margin: EdgeInsets.only(left: 10.w),
-    width: 200.w,
+    width: 145.w,
     child: Text(
       name,
       maxLines: 1,

@@ -20,8 +20,8 @@ class HomeController {
   void init()  {
 
     if (context.mounted) {
-
-      context.read<HomeBloc>().add(HomePageDistrictItemEvent(districts));
+      context.read<HomeBloc>().add(HomePageProvinceItemEvent(provinces));
+       context.read<HomeBloc>().add(HomePageDistrictItemEvent(districts));
     } else {
       print("User has already logged out.");
     }

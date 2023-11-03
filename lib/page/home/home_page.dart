@@ -26,6 +26,7 @@ class _HomePageState extends State<HomePage> {
   late District districts;
   late Province provinces;
   late HomeController _homeController;
+  bool testCheck=false;
   @override
   void initState() {
     super.initState();
@@ -150,14 +151,26 @@ class _HomePageState extends State<HomePage> {
                       height: 500.h,
                       child: ListView.builder(
                           itemCount: state.isChecked
-                              ? state.districtItem.length
+                              ? state.provinceItem.length
                               : state.searchDistrictItem.length,
                           itemBuilder: (context, index) {
                             print(index);
                             return Container(
                               padding: const EdgeInsets.symmetric(vertical: 10),
                               child: state.isChecked
-                                  ? cartView(
+                                  ? Container(
+                                child:Row(
+                                  children: [
+                                    SizedBox(
+                                      child: Checkbox(
+
+                                          value: testCheck, onChanged: (bool? value){
+                                        setState(() {
+                                          testCheck= value!;
+                                        });
+                                      }),
+                                    ),
+                                    cartView(
                                       state.provinceItem
                                           .elementAt(index)
                                           .provinceName
@@ -166,16 +179,31 @@ class _HomePageState extends State<HomePage> {
                                           .elementAt(index)
                                           .provinceCode
                                           .toString(),
-                                      '',
+                                      state.provinceItem
+                                          .elementAt(index)
+                                          .provinceName
+                                          .toString(),
                                       (state.provinceItem
-                                                      .elementAt(index)
-                                                      .flagActive ==
-                                                  '1'
-                                              ? "Active"
-                                              : "InActive")
+                                          .elementAt(index)
+                                          .flagActive ==
+                                          '1'
+                                          ? "Active"
+                                          : "InActive")
                                           .toString(),
                                     )
-                                  : cartView(
+                                  ],
+                                ),
+                              )
+                                  : Container(
+                                child:Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Checkbox(value: testCheck, onChanged: (bool? value){
+                                       setState(() {
+                                         testCheck= value!;
+                                       });
+                                    }),
+                                    cartView(
                                       state.searchDistrictItem
                                           .elementAt(index)
                                           .districtName
@@ -189,13 +217,16 @@ class _HomePageState extends State<HomePage> {
                                           .provinceCode
                                           .toString(),
                                       (state.searchDistrictItem
-                                                      .elementAt(index)
-                                                      .flagActive ==
-                                                  '1'
-                                              ? "Active"
-                                              : "InActive")
+                                          .elementAt(index)
+                                          .flagActive ==
+                                          '1'
+                                          ? "Active"
+                                          : "InActive")
                                           .toString(),
                                     ),
+                                  ],
+                                ),
+                              )
                             );
                           }))
                 ])),
@@ -206,15 +237,4 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-ListView _buildListView(
-  int i,
-) {
-  return ListView.builder(
-      itemCount: 2,
-      itemBuilder: (context, index) {
-        return Container(
-          padding: EdgeInsets.symmetric(vertical: 10),
-          child: cartView("Hà Nội", "10101", "Quốc Oai", "101"),
-        );
-      });
-}
+
