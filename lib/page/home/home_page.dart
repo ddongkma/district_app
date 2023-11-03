@@ -65,7 +65,7 @@ class _HomePageState extends State<HomePage> {
                             context
                                 .read<HomeBloc>()
                                 .add(SearchProvinceEvent(value));
-                            _homeController.filterDistrict(state.nameProvince);
+                            _homeController.filterDistrict(context,state,state.nameProvince);
                           }),
                         ),
                         Checkbox(
@@ -73,7 +73,7 @@ class _HomePageState extends State<HomePage> {
                             value: state.isChecked,
                             onChanged: (bool? value) {
                               if (value!) {
-                                _homeController.getAllProvince();
+                                _homeController.getAllProvince(context,state);
                               }
                               context
                                   .read<HomeBloc>()
@@ -140,8 +140,11 @@ class _HomePageState extends State<HomePage> {
                           child: homePageText('Trạng thái', fontSize: 18),
                         ),
                         Container(
-                            // child: searchView(),
-                            )
+                          child: Checkbox(value: state.isCheckedActive,onChanged: (bool? value){
+                              context.read<HomeBloc>().add(IsCheckedActiveEvent(value!));
+
+                          }),
+                        )
                       ],
                     ),
                   ),

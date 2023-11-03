@@ -4,13 +4,14 @@ import 'package:district_app/common/entities/province.dart';
 class HomeState {
   HomeState(
       {this.index = 0,
-        this.districtItem = const <District>[],
-        this.provinceItem=const <Province>[],
-        this.searchDistrictItem = const <District>[],
+      this.districtItem = const <District>[],
+      this.provinceItem = const <Province>[],
+      this.searchDistrictItem = const <District>[],
       this.searchProvinceItem = const <Province>[],
       this.nameDistrict = "",
       this.nameProvince = "",
-      this.isChecked = false});
+      this.isChecked = false,
+      this.isCheckedActive = false});
   final int index;
   final String nameProvince;
   final String nameDistrict;
@@ -19,6 +20,7 @@ class HomeState {
   final List<District> searchDistrictItem;
   final List<Province> searchProvinceItem;
   final bool isChecked;
+  final bool isCheckedActive;
 
   HomeState copyWith({
     int? index,
@@ -29,6 +31,7 @@ class HomeState {
     String? nameDistrict,
     String? nameProvince,
     bool? isChecked,
+    bool? isCheckedActive,
   }) {
     return HomeState(
       districtItem: districtItem ?? this.districtItem,
@@ -39,6 +42,7 @@ class HomeState {
       nameProvince: nameProvince ?? this.nameProvince,
       nameDistrict: nameDistrict ?? this.nameDistrict,
       isChecked: isChecked ?? this.isChecked,
+      isCheckedActive: isCheckedActive ?? this.isCheckedActive,
     );
   }
 }

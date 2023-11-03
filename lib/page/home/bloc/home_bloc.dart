@@ -17,6 +17,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<SearchDistrictItemEvent>(_searchDistrictItemEvent);
     on<SearchProvinceItemEvent>(_searchProvinceItemEvent);
     on<IsCheckedSearchEvent>(_isCheckedSearchEvent);
+    on<IsCheckedActiveEvent>(_isCheckedActiveEvent);
 
   }
 
@@ -48,7 +49,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     emit(state.copyWith(isChecked: event.isChecked));
   }
 
+
   FutureOr<void> _homePageProvinceItemEvent(HomePageProvinceItemEvent event, Emitter<HomeState> emit) {
     emit(state.copyWith(provinceItem: event.provinceItem));
+  }
+
+  FutureOr<void> _isCheckedActiveEvent(IsCheckedActiveEvent event, Emitter<HomeState> emit) {
+    emit(state.copyWith(isCheckedActive: event.isCheckedActive));
   }
 }

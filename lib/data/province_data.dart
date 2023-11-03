@@ -32,7 +32,7 @@ String  PROVINCE_DATA = '''[
     "FlagActive": "1"
   },
   { "ProvinceCode": "201", "ProvinceName": "Tỉnh Hà Giang", "FlagActive": "1" },
-  { "ProvinceCode": "203", "ProvinceName": "Tỉnh Cao Bằng", "FlagActive": "1" }
+  { "ProvinceCode": "203", "ProvinceName": "Tỉnh Cao Bằng", "FlagActive": "0" }
 ]''';
 List<dynamic> provinceJsonDecode = json.decode(PROVINCE_DATA);
 List<Province> provinces = provinceJsonDecode

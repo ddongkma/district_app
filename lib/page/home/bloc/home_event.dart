@@ -35,3 +35,7 @@ class IsCheckedSearchEvent extends HomeEvent {
   final bool isChecked;
   const IsCheckedSearchEvent(this.isChecked);
 }
+class IsCheckedActiveEvent extends HomeEvent {
+  final bool isCheckedActive;
+  const IsCheckedActiveEvent(this.isCheckedActive);
+}
